@@ -1,0 +1,12 @@
+/* For information on how to create your own theme, please refer to:
+http://ionicframework.com/docs/theming/ */
+@import "tailwindcss";
+body {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+ion-content {
+  --background: #ffffff !important;
+  --color: #000000 !important;
+}
