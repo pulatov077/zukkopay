@@ -47,9 +47,19 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/Student/Wallet.vue')
       },
       {
-        path: 'settings',
-        name: 'StudentSettings',
-        component: () => import('../views/Student/Settings.vue')
+        path: 'profil',
+        name: 'StudentProfil',
+        component: () => import('../views/Student/Profil.vue')
+      },
+      {
+        path: 'earn',
+        name: 'StudentEarn',
+        component: () => import('../views/Student/Earn.vue')
+      },
+      {
+        path: 'store',
+        name: 'StudentStore',
+        component: () => import('../views/Student/Store.vue')
       }
     ]
   }

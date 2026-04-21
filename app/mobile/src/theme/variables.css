@@ -10,3 +10,19 @@ ion-content {
   --background: #ffffff !important;
   --color: #000000 !important;
 }
+:root {
+  /* Default: Dark Theme */
+  --zukko-bg: #0A0E17;
+  --zukko-card: rgba(255, 255, 255, 0.05);
+  --zukko-text: #ffffff;
+  --zukko-border: rgba(255, 255, 255, 0.1);
+  --zukko-primary: #3B82F6;
+}
+
+.light-theme {
+  --zukko-bg: #F8FAFC;
+  --zukko-card: #ffffff;
+  --zukko-text: #0F172A;
+  --zukko-border: #E2E8F0;
+  --zukko-primary: #2563EB;
+}
