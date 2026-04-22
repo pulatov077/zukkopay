@@ -14,6 +14,26 @@
           </div>
         </div>
 
+        <div class="mb-8">
+          <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-3 block">Men bu...</label>
+          <div class="flex gap-3">
+            <button 
+              @click="userRole = 'student'"
+              :class="userRole === 'student' ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-50 border-slate-100 text-slate-400'"
+              class="flex-1 py-4 rounded-[24px] border font-black text-[11px] uppercase tracking-wider transition-all"
+            >
+              👨‍🎓 O'quvchi
+            </button>
+            <button 
+              @click="userRole = 'parent'"
+              :class="userRole === 'parent' ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-50 border-slate-100 text-slate-400'"
+              class="flex-1 py-4 rounded-[24px] border font-black text-[11px] uppercase tracking-wider transition-all"
+            >
+              👨‍👩‍👧 Ota-ona
+            </button>
+          </div>
+        </div>
+
         <div class="space-y-5">
           <div class="space-y-1.5">
             <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Telefon raqam</label>
@@ -72,7 +92,7 @@
                 ? 'bg-blue-600 text-white shadow-blue-200 active:scale-95 cursor-pointer' 
                 : 'bg-slate-100 text-slate-300 cursor-not-allowed'"
             >
-              Davom etish
+              {{ userRole === 'student' ? 'O\'quvchi sifatida davom etish' : 'Ota-ona sifatida davom etish' }}
             </button>
           </div>
         </div>
@@ -94,12 +114,12 @@ import { ref, computed } from 'vue';
 import { IonPage, IonContent } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 
-// Router instansiyasini olish
 const router = useRouter();
 
 // Input qiymatlari
 const phoneNumber = ref('');
 const password = ref('');
+const userRole = ref('student'); // Default rol: student
 
 // Parol talablari matnlari
 const reqLabels = {
@@ -117,31 +137,30 @@ const requirements = computed(() => ({
   symbol: /[^A-Za-z0-9]/.test(password.value)
 }));
 
-// Nechta talab bajarilganini sanash
 const strengthCount = computed(() => {
   return Object.values(requirements.value).filter(Boolean).length;
 });
 
-// Parol kuchli yoki yo'qligini aniqlash
 const isPasswordStrong = computed(() => strengthCount.value === 4);
 
-// Forma to'liq to'ldirilganini tekshirish (Telefon + Kuchli parol)
 const isFormValid = computed(() => {
   return phoneNumber.value.length === 9 && isPasswordStrong.value;
 });
 
-// Registratsiya funksiyasi
+// Registratsiya va Dashboardga yo'naltirish
 const handleRegister = () => {
   if (isFormValid.value) {
-    console.log("Ro'yxatdan o'tish muvaffaqiyatli:", phoneNumber.value);
+    console.log(`Ro'yxatdan o'tish (${userRole.value}):`, phoneNumber.value);
     
-    // Xozircha ma'lumotlar bazasiz to'g'ridan-to'g'ri o'tkazamiz
-    // Keyinchalik bu yerda Supabase Auth va SMS kod keladi
-    router.push('/Student/dashboard');
+    // Rolga qarab dashboardga o'tkazamiz
+    if (userRole.value === 'student') {
+      router.push('/Student/dashboard');
+    } else {
+      router.push('/Parent/dashboard');
+    }
   }
 };
 </script>
 
 <style scoped>
-/* Scoped CSS bo'sh, barcha stillar Tailwind orqali berilgan */
 </style>
