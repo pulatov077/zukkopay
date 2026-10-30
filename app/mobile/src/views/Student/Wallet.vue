@@ -139,46 +139,55 @@
 import { IonPage, IonContent, IonModal } from '@ionic/vue';
 import { ref } from 'vue';
 
+interface Transaction {
+  title: string;
+  amount: string;
+  type: 'plus' | 'minus';
+  date: string;
+  fullDate: string;
+  comment: string;
+}
+
 const showQRModal = ref(false);
 const isModalOpen = ref(false);
-const selectedTx = ref<any>(null);
+const selectedTx = ref<Transaction | null>(null);
 
-const transactions = ref([
-  { 
-    title: 'Money from Parent', 
-    amount: '50,000', 
-    type: 'plus', 
+const transactions = ref<Transaction[]>([
+  {
+    title: 'Money from Parent',
+    amount: '50,000',
+    type: 'plus',
     date: 'Today, 2:30 PM',
     fullDate: '21 Aprel 2026, 14:30:12',
     comment: 'Haftalik cho\'ntak puli. O\'qishlaringga omad!'
   },
-  { 
-    title: 'School Canteen', 
-    amount: '15,000', 
-    type: 'minus', 
+  {
+    title: 'School Canteen',
+    amount: '15,000',
+    type: 'minus',
     date: 'Today, 11:15 AM',
     fullDate: '21 Aprel 2026, 11:15:45',
     comment: 'Tushlik uchun to\'lov.'
   },
-  { 
-    title: 'School Store', 
-    amount: '12,000', 
-    type: 'minus', 
+  {
+    title: 'School Store',
+    amount: '12,000',
+    type: 'minus',
     date: 'Yesterday, 12:40 PM',
     fullDate: '20 Aprel 2026, 12:40:05',
     comment: 'Kantselyariya mollari xarid qilindi.'
   },
-  { 
-    title: 'Transfer to Friend', 
-    amount: '5,000', 
-    type: 'minus', 
+  {
+    title: 'Transfer to Friend',
+    amount: '5,000',
+    type: 'minus',
     date: 'Yesterday, 10:20 AM',
     fullDate: '20 Aprel 2026, 10:20:30',
     comment: 'Qarz qaytarildi.'
   }
 ]);
 
-const openDetails = (tx: any) => {
+const openDetails = (tx: Transaction) => {
   selectedTx.value = tx;
   isModalOpen.value = true;
 };

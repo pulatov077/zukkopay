@@ -291,8 +291,31 @@ const showSearch = ref(false);
 const showNotify = ref(false);
 const balanceVisible = ref(true);
 const searchQuery = ref('');
-const selectedQuest = ref<any>(null);
-const selectedActivity = ref<any>(null);
+interface Quest {
+  id: number;
+  emoji: string;
+  title: string;
+  sub: string;
+  progress: number;
+  reward: string;
+  color: string;
+  iconBg: string;
+}
+
+interface Activity {
+  id: number;
+  icon: string;
+  title: string;
+  time: string;
+  amount: string;
+  color: string;
+  iconBg: string;
+  subject: string;
+  date: string;
+}
+
+const selectedQuest = ref<Quest | null>(null);
+const selectedActivity = ref<Activity | null>(null);
 
 const searchItems = [
   'Complete Daily Reading', 'School Quiz Master', 'Math Homework',

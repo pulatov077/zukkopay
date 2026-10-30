@@ -62,6 +62,33 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/Student/Store.vue')
       }
     ]
+  },
+
+  // Ota-ona (Parent) bo'limi - Pastki menyu (Tabs) bilan
+  {
+    path: '/parent',
+    component: () => import('../views/Parent/TabsPage.vue'),
+    children: [
+      {
+        path: '',
+        redirect: '/parent/dashboard'
+      },
+      {
+        path: 'dashboard',
+        name: 'ParentDashboard',
+        component: () => import('../views/Parent/Dashboard.vue')
+      },
+      {
+        path: 'monitoring',
+        name: 'ParentMonitoring',
+        component: () => import('../views/Parent/Monitoring.vue')
+      },
+      {
+        path: 'profil',
+        name: 'ParentProfil',
+        component: () => import('../views/Parent/Profil.vue')
+      }
+    ]
   }
 ];
 

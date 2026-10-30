@@ -118,11 +118,23 @@
 import { IonPage, IonContent, IonModal } from '@ionic/vue';
 import { ref } from 'vue';
 
+interface Course {
+  id: number;
+  title: string;
+  reward: number;
+  icon: string;
+  color: string;
+  iconBg: string;
+  level: string;
+  duration: string;
+  exams: number;
+}
+
 const showPremium = ref(false);
 const isModalOpen = ref(false);
-const selectedCourse = ref<any>(null);
+const selectedCourse = ref<Course | null>(null);
 
-const courses = [
+const courses: Course[] = [
   { id: 1, title: 'Kiberxavfsizlik', reward: 500, icon: '🛡️', color: '#10b981', iconBg: 'rgba(16,185,129,0.15)', level: 'Beginner', duration: '12 soat', exams: 3 },
   { id: 2, title: 'Frontend (Vue.js)', reward: 750, icon: '💻', color: '#3b82f6', iconBg: 'rgba(59,130,246,0.15)', level: 'Middle', duration: '24 soat', exams: 5 },
   { id: 3, title: 'Moliya savodi', reward: 300, icon: '📈', color: '#fbbf24', iconBg: 'rgba(251,191,36,0.15)', level: 'Beginner', duration: '8 soat', exams: 2 }
@@ -133,7 +145,7 @@ const premiumCourses = [
   { id: 102, title: 'Advanced Cryptography', price: 1800, icon: '🔐', desc: 'Murakkab algoritmlar va shifrlash usullari.', duration: '30 soat', exams: 7 }
 ];
 
-const openDetails = (course: any) => {
+const openDetails = (course: Course) => {
   selectedCourse.value = course;
   isModalOpen.value = true;
 };

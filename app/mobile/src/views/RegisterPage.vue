@@ -150,13 +150,10 @@ const isFormValid = computed(() => {
 // Registratsiya va Dashboardga yo'naltirish
 const handleRegister = () => {
   if (isFormValid.value) {
-    console.log(`Ro'yxatdan o'tish (${userRole.value}):`, phoneNumber.value);
-    
-    // Rolga qarab dashboardga o'tkazamiz
     if (userRole.value === 'student') {
-      router.push('/Student/dashboard');
+      router.push('/student/dashboard');
     } else {
-      router.push('/Parent/dashboard');
+      router.push('/parent/dashboard');
     }
   }
 };
